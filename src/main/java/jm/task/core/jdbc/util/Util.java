@@ -10,12 +10,11 @@ public class Util {
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/mysql";
     private static final String LOGIN = "root1";
     private static final String PASSWORD = "root1";
-    Connection connection = null;
-
-    public Util() {
+    private static Connection connection = null;
+    private Util() {
     }
 
-    public Connection connect() {
+    public static Connection connect() {
         try {
             Class.forName(DATABASE_DRIVER);
             connection = DriverManager.getConnection(DATABASE_URL, LOGIN, PASSWORD);
@@ -24,15 +23,6 @@ public class Util {
             e.printStackTrace();
         }
         return connection;
-    }
-
-    public void close() {
-        try {
-            connection.close();
-            //System.out.println("Соединение с базой данных разорвано!");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 }
 
